@@ -1,4 +1,5 @@
 package zadaniaMacierze;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ public class Main {
 
 		Scanner in = null;
 		try {
-			in = new Scanner(new File("/home/miszx/git/korepetycje/lekcjewk/Lekcje_WK/src/zadaniaMacierze/m3"));
+			in = new Scanner(new File("/home/miszx/git/korepetycje/lekcjewk/Zadania_Macierze/src/zadaniaMacierze/m3"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
