@@ -43,7 +43,7 @@ public class Main {
 		
 		Scanner in = null;
 		try {
-			in = new Scanner(new File("/home/miszx/git/korepetycje/lekcjewk/Zadania_Macierze/src/zadaniaMacierze/m1"));
+			in = new Scanner(new File("/home/miszx/git/korepetycje/lekcjewk/Zadania_Macierze/src/zadaniaMacierze/m3"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -51,11 +51,15 @@ public class Main {
 		int n = 0;
 		int k = 0;
 		int count = 0;
-		int countM = 0;
+		int countM = 0; 
 		int countm = 0;
 		int[][] M = null;
 		int[][] m = null;
 		String[] line;
+
+		int SumaRoznic = 0;
+		int NajwIloscPowt = 0;
+		int SredniaSum = 0;		
 		
 		do {
 			line = in.nextLine().split(" ");
@@ -81,32 +85,36 @@ public class Main {
 
 		int[] wspXY = new int[4];
 		Map<Integer, Integer> ListaRoznic = new HashMap<>();
-		List<Integer> test = new ArrayList<>();
 		for (int i = 0; i < m.length; i++) {
 			for (int j = 0; j < m[i].length; j++) {
 				wspXY[j] = m[i][j];
 			}
 			int wynik = RoznicaSum(wspXY, M);
 			if (ListaRoznic.containsKey(wynik)) {
-				ListaRoznic.put(wynik, ListaRoznic.get(wynik + 1));
+				ListaRoznic.put(wynik, ListaRoznic.get(wynik) + 1);
 			} else {
 				ListaRoznic.put(wynik, 1);
 			}
+			SredniaSum += wynik;
 		}
 
-		int LiczbaRoznychSum = 0;
-		int NajwIloscPowt = 0;
-		int SredniaSum = 0;
-
-		for (Integer suma : ListaRoznic.keySet()) {
-			System.out.println(suma);
-//			if (ListaRoznic.ge == 1) {
-//				LiczbaRoznychSum += ListaRoznic.get(suma);
-//			}
-			
+		int tmpMax = 0;
+		for (Integer i : ListaRoznic.keySet()) {
+			int x = ListaRoznic.get(i);
+			if (x >= tmpMax) {
+				tmpMax = x;
+			}
+			SumaRoznic += i;
 		}
 		
-		System.out.println("Wynik:" + LiczbaRoznychSum);
+		for (Integer i : ListaRoznic.keySet()) {
+			int x = ListaRoznic.get(i);
+			if (x == tmpMax) {
+				NajwIloscPowt++;
+			}
+		}
+
+		System.out.println("Wynik: " + ListaRoznic.size() + " " + NajwIloscPowt + " " + SumaRoznic/SredniaSum);
 		
 //		for (int i = 0; i < M.length; i++) {
 //			System.out.print("[");
